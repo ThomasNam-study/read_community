@@ -17,11 +17,15 @@
             <h1>회원가입</h1>
         </div>
     </div>
+    <div class="row mt-5">
+        {{ error }}
+    </div>
     <div class="row">
         <div class="col-12">
 
             <form method="post" action=".">
                 {% csrf_token %}
+
               <div class="form-group">
                 <label for="username">사용자 이름</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="사용자 이름">
