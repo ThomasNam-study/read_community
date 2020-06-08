@@ -5,6 +5,10 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from fcuser.models import Fcuser
 
+def logout(request):
+    request.session.clear()
+
+    return redirect('/')
 
 def login(request):
     if request.method == "GET":
