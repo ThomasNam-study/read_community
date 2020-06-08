@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<h1>Post archives for {{ year|date:"Y" }}</h1>
+
+<ul>
+    {% for d in date_list %}
+
+        <li style="display: inline;">
+            <a href="{% url 'blog:post_month_archive' year|date:'Y' d|date:'m' %}">Year- {{ d|date:'F' }}</a>
+        </li>
+
+    {% endfor %}
+</ul
+
+<div>
+    <ul>
+        {% for post in object_list %}
+        <li>
+        {{ post.modify_date|date:'Y-m-d' }}&nbsp;&nbsp;
+            <a href = "{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

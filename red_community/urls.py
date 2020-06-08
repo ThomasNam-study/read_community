@@ -23,5 +23,6 @@ urlpatterns = [
     path('fcuser/', include('fcuser.urls')),
     path('board/', include('board.urls')),
     path('bookmark/', include('bookmark.urls')),
+    path('blog/', include(('blog.urls', 'blog'))),
     path('', home),
 ]
