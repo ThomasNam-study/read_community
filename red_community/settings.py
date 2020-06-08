@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fcuser',
     'board',
-    'bookmark'
+    'bookmark',
+    'blog',
 ]
 
 MIDDLEWARE = [
