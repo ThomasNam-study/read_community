@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from fcuser.forms import LoginForm
 from fcuser.models import Fcuser
 
 def logout(request):
@@ -11,27 +12,32 @@ def logout(request):
     return redirect('/')
 
 def login(request):
-    if request.method == "GET":
-        return render(request, "login.html")
-    elif request.method == "POST":
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
 
-        res_data = {}
+    form = LoginForm()
 
-        if not (username and password):
-            res_data['error'] = '모든 값을 입력해야 됩니다.'
-        else:
-            fcuser = Fcuser.objects.get(username=username)
+    return render(request, 'login.html', {'form': form})
 
-            if check_password(password, fcuser.password):
-                request.session['user'] = fcuser.username
-
-                return redirect('/')
-            else:
-                res_data['error'] = '비밀번호가 틀렸습니다.'
-
-        return render(request, "login.html")
+    # if request.method == "GET":
+    #     return render(request, "login.html")
+    # elif request.method == "POST":
+    #     username = request.POST.get('username', None)
+    #     password = request.POST.get('password', None)
+    #
+    #     res_data = {}
+    #
+    #     if not (username and password):
+    #         res_data['error'] = '모든 값을 입력해야 됩니다.'
+    #     else:
+    #         fcuser = Fcuser.objects.get(username=username)
+    #
+    #         if check_password(password, fcuser.password):
+    #             request.session['user'] = fcuser.username
+    #
+    #             return redirect('/')
+    #         else:
+    #             res_data['error'] = '비밀번호가 틀렸습니다.'
+    #
+    #     return render(request, "login.html")
 
 
 def register(request):
