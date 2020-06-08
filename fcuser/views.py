@@ -13,7 +13,14 @@ def logout(request):
 
 def login(request):
 
-    form = LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            request.session['user'] = form.cleaned_data['username']
+            return redirect('/')
+    else:
+        form = LoginForm()
 
     return render(request, 'login.html', {'form': form})
 
