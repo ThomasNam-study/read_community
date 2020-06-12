@@ -13,7 +13,7 @@ class LoginForm(forms.Form):
     })
 
     def clean(self):
-        cleaned_data = super(self).clean()
+        cleaned_data = super(LoginForm, self).clean()
 
         username = cleaned_data.get("username")
         password = cleaned_data.get("password")
@@ -25,6 +25,7 @@ class LoginForm(forms.Form):
                 if not check_password(password, fcuser.password):
                     self.add_error("password", '비밀번호가 틀립니다.')
                 else:
+                    print(fcuser.id)
                     self.user_id = fcuser.id
             except Fcuser.DoesNotExist:
                 self.add_error('username', '아이디가 없습니다.')

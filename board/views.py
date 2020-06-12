@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import render, redirect
 
@@ -17,7 +18,12 @@ def board_detail(request, pk):
 
 
 def board_list(request):
-    boards = Board.objects.all().order_by('-id')
+    all_boards = Board.objects.all().order_by('-id')
+
+    page = request.GET.get('p', 1)
+    paginator = Paginator(all_boards, 10)
+
+    boards = paginator.get_page(page)
 
     return render(request, 'board_list.html', {'boards': boards})
 
@@ -26,7 +32,6 @@ def board_write(request):
     if not request.session.get('user'):
         return redirect('/fcuser/login')
 
-
     if request.method == "POST":
         form = BoardForm(request.POST)
 
@@ -34,7 +39,7 @@ def board_write(request):
             board = Board()
 
             user_id = request.session.get('user')
-            fcuser = Fcuser.objects.get(username=user_id)
+            fcuser = Fcuser.objects.get(id=user_id)
 
             board.title = form.cleaned_data['title']
             board.content = form.cleaned_data['contents']

@@ -8,6 +8,6 @@ def home(request):
     user_id = request.session.get('user')
 
     if user_id:
-        fcuser = Fcuser.objects.get(username=user_id)
+        fcuser = Fcuser.objects.get(id=user_id)
 
     return render(request, 'home.html')

@@ -33,25 +33,32 @@
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'board:list' %}">게시판</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'bookmark:index' %}">Book mark</a></li>
 
-                <li class="nav-item dropdown">
+                {% comment %}<li class="nav-item dropdown">
                     <a href="#" class="dropdown-toggle nav-link js-scroll-trigger" data-toggle="dropdown" role="button"
                        aria-haspopup="true"
                        aria-expanded="true"> <span class="nav-label">Bookmark</span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Bookmark list</a></li>
                     </ul>
-                </li>
+                </li>{% endcomment %}
+
                 <li class="nav-item dropdown">
                     <a href="#" class="dropdown-toggle nav-link js-scroll-trigger" data-toggle="dropdown" role="button"
                        aria-haspopup="true"
                        aria-expanded="true"> <span class="nav-label">Blog</span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Blog list</a></li>
+                        <li><a href="{% url 'blog:index' %}">Blog Home</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Login</a></li>
+
+                {% if request.session.user %}
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/fcuser/logout/">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/fcuser/login/">Login</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
