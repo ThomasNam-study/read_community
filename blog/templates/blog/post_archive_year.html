@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}Blog List{% endblock %}
+{% block mainTitle %}Blog List{% endblock %}
+{% block contents %}
+
 <h1>Post archives for {{ year|date:"Y" }}</h1>
 
 <ul>
@@ -9,7 +13,7 @@
         </li>
 
     {% endfor %}
-</ul
+</ul>
 
 <div>
     <ul>
@@ -21,3 +25,5 @@
         {% endfor %}
     </ul>
 </div>
+
+{% endblock %}
