@@ -10,6 +10,4 @@ def home(request):
     if user_id:
         fcuser = Fcuser.objects.get(username=user_id)
 
-        return HttpResponse(fcuser.username + " - <a href = '/fcuser/logout/'>LOGOUT</a>")
-
     return render(request, 'home.html')
