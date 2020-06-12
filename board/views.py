@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -7,9 +8,12 @@ from fcuser.models import Fcuser
 
 
 def board_detail(request, pk):
-    board = Board.objects.get(pk=pk)
+    try:
+        board = Board.objects.get(pk=pk)
 
-    return render(request, 'board_detail.html', {'board': board})
+        return render(request, 'board_detail.html', {'board': board})
+    except Board.DoesNotExist:
+        raise Http404('게시글을 찾을 수 없습니다.')
 
 
 def board_list(request):
@@ -19,6 +23,10 @@ def board_list(request):
 
 
 def board_write(request):
+    if not request.session.get('user'):
+        return redirect('/fcuser/login')
+
+
     if request.method == "POST":
         form = BoardForm(request.POST)
 
