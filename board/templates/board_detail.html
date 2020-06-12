@@ -19,6 +19,19 @@
                 <textarea class="form-control" readonly>{{ board.content }}</textarea>
             </div>
 
+            <div class="form-group">
+
+                <label for="tags">태그</label>
+                <span id = 'tags'>
+                {{ board.tags.all|join:', ' }}
+                    {% comment %}{% for tag in board.tags.all %}
+                        {{ tag.name }},
+                    {% endfor %}{% endcomment %}
+                </span>
+
+            </div>
+
+
             <a href="{% url 'board:list' %}" class="btn btn-primary" type="button">돌아가기</a>
 
         </div>

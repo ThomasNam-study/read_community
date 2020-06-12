@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from board.forms import BoardForm
 from board.models import Board
+from boardtag.models import BoardTag
 from fcuser.models import Fcuser
 
 
@@ -36,16 +37,27 @@ def board_write(request):
         form = BoardForm(request.POST)
 
         if form.is_valid():
+
+            tags = form.cleaned_data['tags'].split(',')
+
             board = Board()
 
             user_id = request.session.get('user')
-            fcuser = Fcuser.objects.get(id=user_id)
+            user = Fcuser.objects.get(id=user_id)
 
             board.title = form.cleaned_data['title']
             board.content = form.cleaned_data['contents']
-            board.writer = fcuser
+            board.writer = user
 
             board.save()
+
+            for tag in tags:
+                if not tag:
+                    continue
+
+                _tag, _ = BoardTag.objects.get_or_create(name=tag)
+
+                board.tags.add(_tag)
 
             return redirect('/board/list/')
     else:

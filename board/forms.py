@@ -11,3 +11,5 @@ class BoardForm(forms.Form):
     contents = forms.CharField(label="내용", widget=forms.Textarea, error_messages={
         'required': '비밀번호를 입력해주세요'
     })
+
+    tags = forms.CharField(required=False, label="태그")

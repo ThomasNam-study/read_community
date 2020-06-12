@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'board',
     'bookmark',
     'blog',
+    'boardtag',
 ]
 
 MIDDLEWARE = [
