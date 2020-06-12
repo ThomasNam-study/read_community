@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 from fcuser.models import Fcuser
 
@@ -11,4 +12,4 @@ def home(request):
 
         return HttpResponse(fcuser.username + " - <a href = '/fcuser/logout/'>LOGOUT</a>")
 
-    return HttpResponse('Home')
+    return render(request, 'home.html')
