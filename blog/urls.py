@@ -1,7 +1,7 @@
 from django.urls import path
 
 from blog import views
-from blog.views import PostLV, PostDV, PostAV, PostYAV, PostMAV, PostDAV, PostTAV
+from blog.views import PostLV, PostDV, PostAV, PostYAV, PostMAV, PostDAV, PostTAV, PostTOL, TagTV
 
 urlpatterns = [
     path('', PostLV.as_view(), name='index'),
@@ -12,4 +12,6 @@ urlpatterns = [
     path('<int:year>/<int:month>', PostMAV.as_view(), name='post_month_archive'),
     path('<int:year>/<int:month>/<int:day>', PostDAV.as_view(), name='post_day_archive'),
     path('today', PostTAV.as_view(), name='post_today_archive'),
+    path('tag/', TagTV.as_view(), name='tag_cloud'),
+    path('tag/<str:tag>', PostTOL.as_view(), name='tagged_object_list'),
 ]

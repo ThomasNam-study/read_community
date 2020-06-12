@@ -2,7 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import ListView, DetailView, ArchiveIndexView, YearArchiveView, MonthArchiveView, \
-    TodayArchiveView, DayArchiveView
+    TodayArchiveView, DayArchiveView, TemplateView
+from tagging.views import TaggedObjectList
 
 from blog.models import Post
 
@@ -45,3 +46,12 @@ class PostDAV(DayArchiveView):
 class PostTAV(TodayArchiveView):
     model = Post
     date_field = 'modify_date'
+
+
+class TagTV(TemplateView):
+    template_name = 'tagging/tagging_cloud.html'
+
+
+class PostTOL(TaggedObjectList):
+    model = Post
+    template_name = 'tagging/tagging_post_list.html'
