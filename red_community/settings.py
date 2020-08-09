@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'board',
     'bookmark',
     'blog',
+    'order',
+    'product',
     'boardtag',
     'tagging',
 ]
