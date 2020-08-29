@@ -21,6 +21,7 @@ from red_community.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('fcuser/', include('fcuser.urls')),
+    path('product/', include('product.urls')),
     path('board/', include(('board.urls', 'board'))),
     path('bookmark/', include(('bookmark.urls', 'bookmark'))),
     path('blog/', include(('blog.urls', 'blog'))),

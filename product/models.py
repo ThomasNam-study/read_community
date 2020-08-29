@@ -8,7 +8,7 @@ class Product(models.Model):
 
     description = models.TextField(verbose_name='상품 설명')
 
-    stuck = models.IntegerField(verbose_name='재고')
+    stock = models.IntegerField(verbose_name='재고')
 
     registered_date = models.DateTimeField(auto_now_add=True, verbose_name="등록시간")
 
