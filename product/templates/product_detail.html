@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}상품 목록{% endblock %}
+{% block mainTitle %}상품 목록{% endblock %}
+{% block contents %}
+
+    <div class="row mt-5">
+
+        <div class="col-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">가격: {{ product.price|intcomma }}원</li>
+                    <li class="list-group-item">{{ product.description|safe }}</li>
+                </ul>
+
+            </div>
+
+            <div class = 'row mt-5'>
+                <div class="col-12">
+                    <a href = "/product" class = 'btn btn-light'>돌아기기</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
