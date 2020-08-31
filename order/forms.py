@@ -2,6 +2,11 @@ from django import forms
 
 
 class OrderForm(forms.Form):
+
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = request
+
     quantity = forms.IntegerField(
         error_messages={
             'required': '수량을 입력해주세요'

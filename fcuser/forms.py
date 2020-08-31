@@ -55,23 +55,12 @@ class RegisterForm(forms.Form):
     })
 
     def clean(self):
-        cleaned_data = super(RegisterForm, self).clean()
+        cleaned_data = super().clean()
 
-        # username = cleaned_data.get("username")
-        password = cleaned_data.get("password")
-        re_password = cleaned_data.get("re_password")
+        password = cleaned_data.get('password')
+        re_password = cleaned_data.get('re_password')
 
-        if re_password and password and re_password == password:
-            username = cleaned_data.get("username")
-            useremail = cleaned_data.get("useremail")
-
-            fcuser = Fcuser(
-                username=username,
-                useremail=useremail,
-                password=make_password(password)
-            )
-
-            fcuser.save()
-
-        else:
-            self.add_error('password', '패스워드가 다릅니다..')
+        if password and re_password:
+            if password != re_password:
+                self.add_error("password", "비밀번호가 틀렸습니다")
+                self.add_error("re_password", "비밀번호가 틀렸습니다")
