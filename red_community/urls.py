@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('fcuser/', include('fcuser.urls')),
     path('product/', include('product.urls')),
+    path('order/', include('order.urls')),
     path('board/', include(('board.urls', 'board'))),
     path('bookmark/', include(('bookmark.urls', 'bookmark'))),
     path('blog/', include(('blog.urls', 'blog'))),

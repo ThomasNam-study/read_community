@@ -11,6 +11,9 @@ class Order(models.Model):
 
     register_date = models.DateTimeField(auto_now_add=True, verbose_name="등록시간")
 
+    def __str__(self):
+        return self.fcuser.useremail + " " + self.product.name
+
     class Meta:
         db_table = 'fc_order'
         verbose_name = '주문'
