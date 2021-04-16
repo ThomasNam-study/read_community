@@ -26,5 +26,6 @@ urlpatterns = [
     path('board/', include(('board.urls', 'board'))),
     path('bookmark/', include(('bookmark.urls', 'bookmark'))),
     path('blog/', include(('blog.urls', 'blog'))),
+    path('test/', include(('mytest.urls', 'mytest'))),
     path('', home),
 ]
